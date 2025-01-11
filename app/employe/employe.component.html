@@ -1,0 +1,67 @@
+<div class="container">
+  <mat-card class="employe-card">
+    <mat-card-header>
+      <mat-card-title>
+        Employes Title
+      </mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>ID</th><th>First Name</th><th>Last Name</th><th>Code</th><th>Poste ID</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        @for (employe of employes;track employe){
+          <tr >
+            <td>{{employe.id}}</td>
+            <td>{{employe.firstName}}</td>
+            <td>{{employe.lastName}}</td>
+            <td>{{employe.code}}</td>
+            <td>{{employe.postId}}</td>
+            <td>
+              <button (click)="employeAbsences(employe)" mat-raised-button color="primary">Absences</button>
+            </td>
+          </tr>
+        }
+        </tbody>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="employe-card">
+    <mat-card-header>
+      <mat-card-title>Employes</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <table matSort mat-table [dataSource]="employesDataSource">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef > id</th>
+          <td mat-cell *matCellDef="let employe"> {{employe.id}} </td>
+        </ng-container>
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef > First Name</th>
+          <td mat-cell *matCellDef="let employe"> {{employe.firstName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="lasttName">
+          <th mat-header-cell *matHeaderCellDef > Last Name</th>
+          <td mat-cell *matCellDef="let employe"> {{employe.lastName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="code">
+          <th mat-header-cell *matHeaderCellDef > Code</th>
+          <td mat-cell *matCellDef="let employe"> {{employe.code}} </td>
+        </ng-container>
+        <ng-container matColumnDef="programId">
+          <th mat-header-cell *matHeaderCellDef > Program ID</th>
+          <td mat-cell *matCellDef="let employe"> {{employe.programId}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>
+

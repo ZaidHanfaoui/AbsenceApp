@@ -1,0 +1,37 @@
+<div class="container">
+  <mat-card [formGroup]="absenceFormGroup" class="absence-form">
+    <mat-card-header>
+      <mat-card-title>New Absence</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field>
+      <mat-label>Absence Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Absence JourAbs</mat-label>
+        <input matInput formControlName="absnumber">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Absence Type</mat-label>
+        <mat-select formControlName="type">
+          @for( t of absenceTypes;track t){
+            <mat-option [value]="t">{{ t }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+          <mat-label>Employe Code</mat-label>
+        <input matInput formControlName="employeCode">
+      </mat-form-field>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button  (click)="saveAbsence()" mat-raised-button color="primary">Save Absence</button>
+      <mat-spinner *ngIf="showProgress"></mat-spinner>
+    </mat-card-actions>
+  </mat-card>
+</div>
